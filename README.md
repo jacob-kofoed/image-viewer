@@ -2,6 +2,8 @@
 
 image-viewer case
 
+[![.github/workflows/build-and-test.yml](https://github.com/JakeCake/image-viewer/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/JakeCake/image-viewer/actions/workflows/build-and-test.yml)
+
 ## Available Scripts
 
 In the project directory, you can run:
