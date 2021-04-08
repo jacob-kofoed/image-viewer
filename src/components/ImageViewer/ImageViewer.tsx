@@ -12,7 +12,7 @@ export function ImageViewer({
   return (
     <div>
       <button onClick={() => onChange(frameIndex + 1)}>Next</button>
-      <img src={frames[frameIndex].src} />
+      <img src={frames[frameIndex]} />
     </div>
   );
 }
