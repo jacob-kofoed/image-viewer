@@ -5,7 +5,7 @@ export function App() {
     <div className="App">
       <header className="App-header"></header>
 
-      <ImageViewerContainer />
+      <ImageViewerContainer productIdentifier="ARCHIBALDCHAIR" />
     </div>
   );
 }

@@ -27,5 +27,7 @@ export function ImageViewerContainer({
 
   Promise.any(images).then((x) => x.src);
 
-  return <ImageViewer frames={[]} frameIndex={frameIndex} />;
+  return (
+    <ImageViewer frames={[]} frameIndex={frameIndex} onChange={setFrameIndex} />
+  );
 }
