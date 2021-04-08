@@ -1,4 +1,4 @@
 export * from "./ImageViewer";
 export * from "./ImageViewerContainer";
 
-export type Frame = {}
+export const FRAMES_TOTAL = 32;

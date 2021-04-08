@@ -1,3 +1,5 @@
+import styles from "./ImageViewer.module.css";
+
 type ImageViewerProps = {
   frames: string[];
   frameIndex: number;
@@ -10,8 +12,9 @@ export function ImageViewer({
   onChange,
 }: ImageViewerProps) {
   return (
-    <div>
+    <div className={styles.root}>
       <button onClick={() => onChange(frameIndex + 1)}>Next</button>
+
       <img src={frames[frameIndex]} alt="" />
     </div>
   );

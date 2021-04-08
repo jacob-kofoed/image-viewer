@@ -1,11 +1,25 @@
+:root {
+  --primary-color: #007cba;
+  --secondary-color: #007cba;
+  --background-color: rgb(240, 242, 245);
+  --white: #fff;
+  --black: #222;
+  --font-color: var(--black);
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--font-color);
+}
+
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }

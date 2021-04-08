@@ -1,11 +1,13 @@
 import { ImageViewerContainer } from "./components/ImageViewer";
+import styles from "./App.module.css";
+import { ApiContextProvider } from "./context/ApiContext";
 
 export function App() {
   return (
-    <div className="App">
-      <header className="App-header"></header>
-
-      <ImageViewerContainer productIdentifier="ARCHIBALDCHAIR" />
-    </div>
+    <ApiContextProvider>
+      <div className={styles.root}>
+        <ImageViewerContainer productIdentifier="ARCHIBALDCHAIR" />
+      </div>
+    </ApiContextProvider>
   );
 }

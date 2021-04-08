@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ImageViewer } from ".";
+import { FRAMES_TOTAL, ImageViewer } from ".";
+import { useApiContext } from "../../context/ApiContext";
 
 type ImageViewerContainerProps = {
   productIdentifier: string;
@@ -10,24 +11,31 @@ export function ImageViewerContainer({
   initialFrameIndex = 0,
   productIdentifier,
 }: ImageViewerContainerProps) {
+  const frames = useImageViewerFrames(productIdentifier);
   const [frameIndex, setFrameIndex] = useState(initialFrameIndex);
 
-  // Wait for ImageViewer to load first image to not pollute request que
-  // then load remaining images into memory
-  const images = Array.from({ length: 32 }).map(
-    (index) =>
-      new Promise<HTMLImageElement>((resolve, reject) => {
-        const image = new Image();
-        image.src = `https://content.cylindo.com/api/v2/4404/products/ARCHIBALDCHAIR/frames/${index}/`;
-
-        image.onload = () => resolve(image);
-        image.onerror = reject;
-      })
-  );
-
-  Promise.any(images).then((x) => x.src);
+  const handleChange = (index: number) => {
+    const indexModulo = index % FRAMES_TOTAL;
+    setFrameIndex(indexModulo);
+  };
 
   return (
-    <ImageViewer frames={[]} frameIndex={frameIndex} onChange={setFrameIndex} />
+    <ImageViewer
+      frames={frames}
+      frameIndex={frameIndex}
+      onChange={handleChange}
+    />
+  );
+}
+
+function useImageViewerFrames(productIdentifier: string) {
+  const { baseUrl, customerId } = useApiContext();
+
+  // Api product frames are based 1, not based 0
+  return Array.from({ length: FRAMES_TOTAL - 1 }).map(
+    (_, index) =>
+      `${baseUrl}/${customerId}/products/${productIdentifier}/frames/${
+        index + 1
+      }/`
   );
 }
