@@ -6,7 +6,11 @@ export function App() {
   return (
     <ApiContextProvider>
       <div className={styles.root}>
-        <ImageViewerContainer productIdentifier="ARCHIBALDCHAIR" />
+        <ImageViewerContainer
+          initialFrameIndex={5}
+          productIdentifier="ARCHIBALDCHAIR"
+          productName="Archibald chair"
+        />
       </div>
     </ApiContextProvider>
   );
