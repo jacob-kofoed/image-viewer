@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FRAMES_TOTAL, ImageViewer, useImageViewerFrames } from ".";
+import { modulo } from "./ImageViewer.util";
 
 type ImageViewerContainerProps = {
   productIdentifier: string;
@@ -21,18 +22,11 @@ export function ImageViewerContainer({
   };
 
   return (
-    <>
       <ImageViewer
         frames={frames}
         frameIndex={frameIndex}
         productName={productName}
         onChange={handleChange}
       />
-    </>
   );
-}
-
-// https://stackoverflow.com/a/4467559
-function modulo(n: number, m: number) {
-  return ((n % m) + m) % m;
 }

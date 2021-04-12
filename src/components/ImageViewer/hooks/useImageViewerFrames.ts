@@ -1,5 +1,5 @@
 import { FRAMES_TOTAL } from "..";
-import { useApiContext } from "../../../context/ApiContext";
+import { useApiContext } from "../../../api/ApiContext";
 
 export function useImageViewerFrames(productIdentifier: string) {
     const { baseUrl, customerId } = useApiContext();

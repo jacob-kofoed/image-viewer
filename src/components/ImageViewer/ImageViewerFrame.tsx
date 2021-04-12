@@ -1,5 +1,4 @@
-import clsx from "clsx";
-import styles from "./ImageViewerFrame.module.css";
+import styled from '@emotion/styled'
 
 type ImageViewerFrameProps = {
   src: string;
@@ -8,16 +7,27 @@ type ImageViewerFrameProps = {
   onLoad: React.ReactEventHandler<HTMLImageElement>;
 };
 
+const ImageViewerFrameRoot = styled.img<{active: boolean}>({
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  maxWidth: "100%",
+  "-webkit-user-drag": "none",
+  userSelect: "none",
+  cursor: "grab",
+}, ({ active }) => ({
+  visibility: active ? "visible" : "hidden"
+}))
+
 export function ImageViewerFrame({
-  active,
   alt,
   ...rest
 }: ImageViewerFrameProps) {
   return (
-    <img
+    <ImageViewerFrameRoot
       {...rest}
       alt={alt}
-      className={clsx(styles.root, { [styles.active]: active })}
     />
   );
 }

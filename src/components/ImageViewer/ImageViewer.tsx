@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import styles from "./ImageViewer.module.css";
+import styled from '@emotion/styled'
 import { ImageViewerFrame, useImageViewerDragFrames } from ".";
 
 type ImageViewerProps = {
@@ -8,6 +8,13 @@ type ImageViewerProps = {
   frameIndex: number;
   onChange: (index: number) => void;
 };
+
+const ImageViewerRoot = styled.div({
+  background: "var(--white)",
+  position: "relative",
+  width: 372,
+  height: 372,
+})
 
 export function ImageViewer({
   productName,
@@ -24,7 +31,7 @@ export function ImageViewer({
   const framesToRender = firstFrameLoaded ? frames : [frames[frameIndex]];
 
   return (
-    <div className={styles.root} {...useImageViewerDragFrames(handleFrameDrag)}>
+    <ImageViewerRoot {...useImageViewerDragFrames(handleFrameDrag)}>
       {framesToRender.map((src, index) => (
         <ImageViewerFrame
           src={src}
@@ -34,6 +41,6 @@ export function ImageViewer({
           alt={`Frame ${index + 1} of ${productName}`}
         />
       ))}
-    </div>
+    </ImageViewerRoot>
   );
 }

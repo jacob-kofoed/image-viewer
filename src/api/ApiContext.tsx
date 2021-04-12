@@ -11,7 +11,7 @@ export const ApiContextProvider: React.FunctionComponent = (props) => {
     customerId: "4404",
   });
 
-  return <ApiContext.Provider {...props} value={value} />;
+  return <ApiContext.Provider value={value} {...props} />;
 };
 
 export function useApiContext() {

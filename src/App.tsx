@@ -1,17 +1,24 @@
 import { ImageViewerContainer } from "./components/ImageViewer";
-import styles from "./App.module.css";
-import { ApiContextProvider } from "./context/ApiContext";
+import { ApiContextProvider } from "./api/ApiContext";
+import styled from "@emotion/styled";
+
+const AppRoot = styled.div({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column"
+})
 
 export function App() {
   return (
     <ApiContextProvider>
-      <div className={styles.root}>
+      <AppRoot>
         <ImageViewerContainer
-          initialFrameIndex={5}
+          initialFrameIndex={0}
           productIdentifier="ARCHIBALDCHAIR"
           productName="Archibald chair"
         />
-      </div>
+      </AppRoot>
     </ApiContextProvider>
   );
 }
