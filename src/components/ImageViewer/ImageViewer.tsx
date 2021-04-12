@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
-import styled from '@emotion/styled'
-import { ImageViewerFrame, useImageViewerDragFrames } from ".";
+import { useState } from "react";
+import styled from "@emotion/styled";
+import { ImageViewerFrame, useDragFrames } from ".";
 
 type ImageViewerProps = {
   productName: string;
@@ -10,11 +10,8 @@ type ImageViewerProps = {
 };
 
 const ImageViewerRoot = styled.div({
-  background: "var(--white)",
   position: "relative",
-  width: 372,
-  height: 372,
-})
+});
 
 export function ImageViewer({
   productName,
@@ -22,25 +19,29 @@ export function ImageViewer({
   frameIndex,
   onChange,
 }: ImageViewerProps) {
-  const handleFrameDrag = useCallback(
-    (frameChange: number) => onChange(frameChange),
-    [onChange]
-  );
-
   const [firstFrameLoaded, setFirstFrameLoaded] = useState(false);
-  const framesToRender = firstFrameLoaded ? frames : [frames[frameIndex]];
+  const [currentFrame, bindings] = useDragFrames({
+    frameIndex,
+    frames,
+    onChange,
+  });
+
+  const framesToRender = firstFrameLoaded ? frames : [currentFrame];
 
   return (
-    <ImageViewerRoot {...useImageViewerDragFrames(handleFrameDrag)}>
-      {framesToRender.map((src, index) => (
-        <ImageViewerFrame
-          src={src}
-          active={src === frames[frameIndex]}
-          onLoad={() => setFirstFrameLoaded(true)}
-          key={src}
-          alt={`Frame ${index + 1} of ${productName}`}
-        />
-      ))}
-    </ImageViewerRoot>
+    <>
+      <p>{productName}</p>
+      <ImageViewerRoot {...bindings}>
+        {framesToRender.map((src, index) => (
+          <ImageViewerFrame
+            src={src}
+            active={src === currentFrame}
+            onLoad={() => setFirstFrameLoaded(true)}
+            key={src}
+            alt={`Frame ${index + 1} of ${productName}`}
+          />
+        ))}
+      </ImageViewerRoot>
+    </>
   );
 }

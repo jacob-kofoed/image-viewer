@@ -1,15 +1,9 @@
 :root {
-  --primary-color: #007cba;
-  --secondary-color: #007cba;
   --background-color: rgb(240, 242, 245);
-  --white: #fff;
-  --black: #222;
-  --font-color: var(--black);
 }
 
 html {
   background-color: var(--background-color);
-  color: var(--font-color);
 }
 
 body {
@@ -19,7 +13,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+  font-weight: lighter;
+  font-size: 3.8rem;
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

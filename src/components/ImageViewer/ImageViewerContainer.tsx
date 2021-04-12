@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { FRAMES_TOTAL, ImageViewer, useImageViewerFrames } from ".";
-import { modulo } from "./ImageViewer.util";
+import { useEffect, useState } from "react";
+import { ImageViewer, useImageViewerFrames } from ".";
 
 type ImageViewerContainerProps = {
   productIdentifier: string;
@@ -16,17 +15,16 @@ export function ImageViewerContainer({
   const frames = useImageViewerFrames(productIdentifier);
   const [frameIndex, setFrameIndex] = useState(initialFrameIndex);
 
-  const handleChange = (index: number) => {
-    const indexModulo = modulo(index, FRAMES_TOTAL);
-    setFrameIndex(indexModulo);
-  };
+  useEffect(() => {
+    console.log(frameIndex);
+  }, [frameIndex]);
 
   return (
-      <ImageViewer
-        frames={frames}
-        frameIndex={frameIndex}
-        productName={productName}
-        onChange={handleChange}
-      />
+    <ImageViewer
+      frames={frames}
+      frameIndex={frameIndex}
+      productName={productName}
+      onChange={setFrameIndex}
+    />
   );
 }
