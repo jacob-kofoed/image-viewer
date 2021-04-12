@@ -7,6 +7,8 @@ type useDragFramesProps = {
   frameIndex: number;
 };
 
+const PX_PER_FRAME = 10;
+
 export function useDragFrames({
   onChange,
   frames,
@@ -34,10 +36,10 @@ export function useDragFrames({
     if (!isDragging) return;
 
     const handleMouseMove = (event: MouseEvent) => {
-      // Move one frame per 20 pixels
-      const deltaFrames = Math.round((event.clientX - initialX) / 20);
+      // Move one frame per 10 pixels
+      const deltaFrames = Math.round((event.clientX - initialX) / PX_PER_FRAME);
 
-      // Make sure to wrap back to beginning by taking modulo of the new index
+      // Make sure to wrap back to first frame by taking modulo of the new index
       setCurrentIndex(modulo(frameIndex + deltaFrames, frames.length));
     };
     const handleMouseUp = () => {
@@ -53,7 +55,7 @@ export function useDragFrames({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [currentIndex, frameIndex, initialX, isDragging, onChange]);
+  }, [currentIndex, frameIndex, frames.length, initialX, isDragging, onChange]);
 
   const currentFrame = frames[currentIndex];
   return [currentFrame, { onMouseDown }];

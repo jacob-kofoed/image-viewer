@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ImageViewer, useImageViewerFrames } from ".";
 
 type ImageViewerContainerProps = {
@@ -14,10 +14,6 @@ export function ImageViewerContainer({
 }: ImageViewerContainerProps) {
   const frames = useImageViewerFrames(productIdentifier);
   const [frameIndex, setFrameIndex] = useState(initialFrameIndex);
-
-  useEffect(() => {
-    console.log(frameIndex);
-  }, [frameIndex]);
 
   return (
     <ImageViewer

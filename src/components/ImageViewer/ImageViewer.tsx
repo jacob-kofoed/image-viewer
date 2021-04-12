@@ -26,6 +26,8 @@ export function ImageViewer({
     onChange,
   });
 
+  // We explicitely load the first frame before loading the rest in parallel,
+  // this is to get something on screen as fast as possible.
   const framesToRender = firstFrameLoaded ? frames : [currentFrame];
 
   return (
@@ -35,9 +37,9 @@ export function ImageViewer({
         {framesToRender.map((src, index) => (
           <ImageViewerFrame
             src={src}
+            key={src}
             active={src === currentFrame}
             onLoad={() => setFirstFrameLoaded(true)}
-            key={src}
             alt={`Frame ${index + 1} of ${productName}`}
           />
         ))}
