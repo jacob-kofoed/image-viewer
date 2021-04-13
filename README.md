@@ -1,8 +1,8 @@
 # image-viewer
 
-image-viewer case
-
 [![.github/workflows/build-and-test.yml](https://github.com/JakeCake/image-viewer/actions/workflows/build-and-test.yml/badge.svg?branch=main)](https://github.com/JakeCake/image-viewer/actions/workflows/build-and-test.yml)
+
+![Chair spinning](https://github.com/JakeCake/image-viewer/blob/master/documentation/example.gif?raw=true)
 
 ## Available Scripts
 
